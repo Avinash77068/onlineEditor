@@ -20,7 +20,8 @@ const LanguageSelector = ({ language, onLanguageChange, languages }) => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 bg-[#102A44] border border-[#1E3A5F] rounded-lg text-blue-300 hover:text-blue-200 hover:bg-[#1E3A5F] transition-all duration-200 min-w-[140px]"
+        style={{paddingTop: "10px",paddingBottom: "10px",paddingLeft: "10px",paddingRight: "10px" }}
+        className="flex items-center gap-2 bg-[#102A44] border border-[#1E3A5F] px-4 text-blue-300 hover:text-blue-200 hover:bg-[#1E3A5F] transition-all duration-200 min-w-[140px]"
       >
         <Code size={16} />
         <span className="text-sm font-medium">
@@ -28,7 +29,7 @@ const LanguageSelector = ({ language, onLanguageChange, languages }) => {
         </span>
         <ChevronDown
           size={14}
-          className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
 
@@ -42,7 +43,9 @@ const LanguageSelector = ({ language, onLanguageChange, languages }) => {
                 setIsOpen(false);
               }}
               className={`w-full flex items-center gap-2 px-3 py-2 text-left hover:bg-[#1E3A5F] transition-colors duration-150 ${
-                language === lang ? 'bg-[#1E3A5F] text-blue-200' : 'text-blue-300'
+                language === lang
+                  ? "bg-[#1E3A5F] text-blue-200"
+                  : "text-blue-300"
               }`}
             >
               <span>{languageIcons[lang]}</span>
@@ -54,10 +57,7 @@ const LanguageSelector = ({ language, onLanguageChange, languages }) => {
 
       {/* Click outside to close */}
       {isOpen && (
-        <div
-          className="fixed inset-0 z-40"
-          onClick={() => setIsOpen(false)}
-        />
+        <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
       )}
     </div>
   );
