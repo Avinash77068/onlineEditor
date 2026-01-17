@@ -3,14 +3,13 @@ import Sidebar from "./components/Sidebar";
 import CodeEditor from "./components/CodeEditor";
 import OutputPanel from "./components/OutputPanel";
 import LanguageSelector from "./components/LanguageSelector";
-import CameraPreview from "./components/CameraPreview";
 import { useLanguageSelector } from "./hooks/useLanguageSelector";
 import { useCodeExecutor } from "./hooks/useCodeExecutor";
 import { usePyodide } from "./hooks/usePyodide";
-import { useCamera } from "./hooks/useCamera";
 import { useState } from "react";
 import question from "./components/questiondata/question";
-function Main() {
+
+function Main({ cameraActive,  handleCameraToggle }) {
   const { language, code, changeLanguage, updateCode, getLanguages, setCode } =
     useLanguageSelector();
   const { pyodide, loading: pyodideLoading } = usePyodide();
@@ -19,13 +18,11 @@ function Main() {
     language,
     pyodide,
   );
-  const { stream, isActive: cameraActive, error: cameraError, toggleCamera } = useCamera();
   const [questions, setQuestion] = useState(
     question[Math.floor(Math.random() * question.length)],
   );
   const [changecolor, setChangeColor] = useState("blueDark");
   const [changeColoum, setChangeColoum] = useState("lg:flex-row");
-  const [showCamera, setShowCamera] = useState(false);
   const handleClear = () => {
     updateCode("");
     clearOutput();
@@ -41,16 +38,6 @@ function Main() {
   const handleShare = () => {
     navigator.clipboard.writeText(code);
     alert("Code copied to clipboard!");
-  };
-
-  const handleCameraToggle = () => {
-    console.log('Camera button clicked!', { showCamera, cameraActive });
-    setShowCamera(!showCamera);
-    if (!showCamera && !cameraActive) {
-      // Auto-start camera when opening modal
-      console.log('Starting camera...');
-      setTimeout(() => toggleCamera(), 100);
-    }
   };
 
   return (
@@ -94,15 +81,6 @@ function Main() {
           <OutputPanel output={output} error={error} />
         </div>
       </div>
-
-      {/* Camera Preview Modal */}
-      <CameraPreview
-        isVisible={showCamera}
-        onClose={() => setShowCamera(false)}
-        stream={stream}
-        error={cameraError}
-        onToggleCamera={toggleCamera}
-      />
     </div>
   );
 }

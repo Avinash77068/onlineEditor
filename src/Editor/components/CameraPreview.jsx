@@ -14,20 +14,23 @@ const CameraPreview = ({ isVisible, onClose, stream, error, onToggleCamera }) =>
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-      <div className="relative bg-[#1e1e1e] rounded-lg shadow-2xl max-w-4xl w-full mx-4">
+    <div className="fixed top-4 right-4 z-50">
+      <div
+        className="relative bg-[#1e1e1e] rounded-lg shadow-2xl"
+        style={{ width: "200px" }}
+      >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-[#2d2d2d]">
+        <div className="flex  items-center justify-between p-4 border-b border-[#2d2d2d]">
           <h3 className="text-white text-lg font-semibold flex items-center gap-2">
             <Camera size={20} />
-            Camera Preview
+            Live Recording
           </h3>
-          <button
+          {/* <button
             onClick={onClose}
             className="text-gray-400 hover:text-white transition-colors"
           >
             <X size={24} />
-          </button>
+          </button> */}
         </div>
 
         {/* Camera Content */}
@@ -51,12 +54,11 @@ const CameraPreview = ({ isVisible, onClose, stream, error, onToggleCamera }) =>
                 playsInline
                 muted
                 className="w-full h-auto rounded-lg bg-black"
-                style={{ maxHeight: '70vh' }}
+                style={{ maxHeight: "70vh" }}
               />
               <div className="absolute bottom-4 left-4">
-                <div className="bg-green-500 text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
-                  <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                  Live
+                <div className="bg-red-700 text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
+                  <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
                 </div>
               </div>
             </div>
@@ -74,19 +76,6 @@ const CameraPreview = ({ isVisible, onClose, stream, error, onToggleCamera }) =>
             </div>
           )}
         </div>
-
-        {/* Footer with controls */}
-        {stream && (
-          <div className="flex justify-center gap-4 p-4 border-t border-[#2d2d2d]">
-            <button
-              onClick={onToggleCamera}
-              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
-            >
-              <CameraOff size={16} />
-              Stop Camera
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );
