@@ -40,6 +40,17 @@ function Main({ cameraActive,  handleCameraToggle }) {
     alert("Code copied to clipboard!");
   };
 
+  const handleSave = () => {
+    try {
+      localStorage.setItem('editorCode', code);
+      localStorage.setItem('editorLanguage', language);
+      alert("Code saved to localStorage!");
+    } catch (error) {
+      console.error('Failed to save to localStorage:', error);
+      alert("Failed to save code!");
+    }
+  };
+
   return (
     <div className="h-screen flex flex-col bg-[#1e1e1e]">
       <Header />
@@ -67,6 +78,7 @@ function Main({ cameraActive,  handleCameraToggle }) {
           onColoumChange={handleColoumChange}
           onCameraToggle={handleCameraToggle}
           cameraActive={cameraActive}
+          onSave={handleSave}
         />
 
         <div className={`flex-1 flex flex-col ${changeColoum} overflow-hidden`}>
