@@ -43,12 +43,12 @@ export default function CodeEditor({ code, onChange , language}) {
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-[#0B1C2D] border border-[#1E3A5F] rounded-xl overflow-hidden">
+    <div className="flex-1 flex flex-col bg-[#0B1C2D] border border-[#1E3A5F]  overflow-hidden">
       <div className="flex items-center justify-between px-4 py-2 bg-[#102A44] border-b border-[#1E3A5F]">
-        <span className="text-sm text-blue-300 font-medium">
-         {language}
-        </span>
-        <button className="text-blue-400 hover:text-blue-300 transition">
+        <div className="text-sm text-blue-300 font-medium" style={{marginLeft: '16px'}}>
+          {language}
+        </div>
+        <button className="text-blue-400 hover:text-blue-300 transition" style={{marginRight: '16px'}}>
           <Maximize2 size={16} />
         </button>
       </div>
