@@ -1,4 +1,4 @@
-import { Play, Save, Share2, Settings, Pen, Pencil, Camera } from 'lucide-react';
+import { Play, Save, Share2, Settings,Camera, AlignVerticalSpaceAround } from 'lucide-react';
 
 const Sidebar = ({ onRun, onClear, onShare, onColoumChange, onCameraToggle, cameraActive }) => {
   return (
@@ -30,7 +30,7 @@ const Sidebar = ({ onRun, onClear, onShare, onColoumChange, onCameraToggle, came
       <button
         onClick={onCameraToggle}
         className={`w-10 h-10 flex items-center justify-center rounded-lg bg-[#1e1e1e] hover:bg-[#2d2d2d] text-gray-400 hover:text-white transition-colors ${
-          cameraActive ? 'text-green-400' : ''
+          cameraActive ? "text-green-400" : ""
         }`}
         title="Camera"
       >
@@ -42,7 +42,7 @@ const Sidebar = ({ onRun, onClear, onShare, onColoumChange, onCameraToggle, came
         title="Settings"
         onClick={onColoumChange}
       >
-        <Pencil size={20} />
+        <AlignVerticalSpaceAround size={20}/>
       </button>
 
       <div className="flex-1"></div>

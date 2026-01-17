@@ -63,6 +63,7 @@ export const useCamera = () => {
   };
 
   // Cleanup on unmount
+  
   useEffect(() => {
     return () => {
       if (stream) {
