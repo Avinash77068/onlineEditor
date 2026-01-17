@@ -6,16 +6,25 @@ import LanguageSelector from './components/LanguageSelector';
 import { useLanguageSelector } from './hooks/useLanguageSelector';
 import { useCodeExecutor } from './hooks/useCodeExecutor';
 import { usePyodide } from './hooks/usePyodide';
+import { useState } from 'react';
 
 function App() {
   const { language, code, changeLanguage, updateCode, getLanguages, setCode } = useLanguageSelector();
   const { pyodide, loading: pyodideLoading } = usePyodide();
   const { output, error, executeCode, clearOutput } = useCodeExecutor(code, language, pyodide);
-
-  const question = "What is the capital of France?";
+  const [question, setQuestion] = useState('write a program to print hello world');
+  const [changecolor, setChangeColor] = useState("blueDark");
+  const [changeColoum, setChangeColoum] = useState('lg:flex-row');
   const handleClear = () => {
     updateCode('');
     clearOutput();
+  };
+  const handleColoumChange = () => {
+    if (changeColoum === 'lg:flex-col') {
+      setChangeColoum('lg:flex-row');
+    } else {
+      setChangeColoum('lg:flex-col');
+    }
   };
 
   const handleShare = () => {
@@ -47,14 +56,17 @@ function App() {
           onRun={executeCode}
           onClear={handleClear}
           onShare={handleShare}
+          onColoumChange={handleColoumChange}
         />
 
-        <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
+        <div className={`flex-1 flex flex-col ${changeColoum} overflow-hidden`}>
           <CodeEditor
             code={code}
             onChange={setCode}
             language={language}
             onRun={executeCode}
+            onChangeColor={setChangeColor}
+            changeColor={changecolor}
           />
           <OutputPanel output={output} error={error} />
         </div>

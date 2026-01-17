@@ -2,7 +2,7 @@ import { useRef } from "react";
 import Editor from "@monaco-editor/react";
 import { Maximize2 } from "lucide-react";
 
-export default function CodeEditor({ code, onChange , language}) {
+export default function CodeEditor({ code, onChange , language, onChangeColor, changeColor}) {
   const editorRef = useRef(null);
 
 
@@ -31,7 +31,7 @@ export default function CodeEditor({ code, onChange , language}) {
       },
     });
 
-    monaco.editor.setTheme("blueDark");
+    monaco.editor.setTheme(changeColor);
 
     editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyV, () => { alert("Paste disabled"); });
     editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Insert, () => { alert("Insert disabled"); });
@@ -43,7 +43,7 @@ export default function CodeEditor({ code, onChange , language}) {
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-[#0B1C2D] border border-[#1E3A5F]  overflow-hidden">
+    <div className="flex-1 flex flex-col border border-[#1E3A5F]  overflow-hidden" style={{backgroundColor: '#0B1C2D'}}>
       <div className="flex items-center justify-between px-4 py-2 bg-[#102A44] border-b border-[#1E3A5F]">
         <div className="text-sm text-blue-300 font-medium" style={{marginLeft: '16px'}}>
           {language}
