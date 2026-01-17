@@ -28,6 +28,9 @@ const OutputPanel = ({ output, error }) => {
                 {item.type === "error" && (
                   <div className="text-red-400">{item.value}</div>
                 )}
+                {item.type === "info" && (
+                  <div className="text-yellow-400 whitespace-pre-wrap">{item.value}</div>
+                )}
               </div>
             ))}
           </div>

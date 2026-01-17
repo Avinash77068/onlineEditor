@@ -55,7 +55,7 @@ export default function CodeEditor({ code, onChange , language}) {
 
       <Editor
         height="100%"
-        defaultLanguage="javascript"
+        language={language}
         value={code}
         onChange={(value) => onChange(value || "")}
         onMount={handleEditorDidMount}
